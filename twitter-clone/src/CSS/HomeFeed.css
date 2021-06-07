@@ -1,0 +1,72 @@
+.homeFeedContainer{
+    flex: 0.5;
+    border: 0.5px solid lightgray;
+}
+
+.feedContent{
+    display: flex;
+    padding-left: 0.75em;
+    padding-top: 1em;
+    border: 1px solid lightgray;
+}
+
+.tweet{
+    padding-left: 0.5em;
+    font-weight: lighter;
+    width: 100%;
+}
+
+.tweet > img{
+    margin-top: 1.5em;
+    align-self: center;
+    width: 100;
+}
+
+.user{
+    display: flex;
+    font-weight: bold;
+    margin-top: 0.25em;
+}
+.userTag{
+    margin-left: 0.3em;
+    color: rgb(119, 119, 119);
+    font-weight: lighter;
+}
+.text{
+    margin-top: 1em;
+    font-weight: lighter;
+}
+.tweetIcons{
+    display: flex;
+    justify-content: space-around;
+    margin-top: 2em;
+    margin-left: 8em;
+    margin-right: 10em;
+}
+.comment{
+    display: flex;
+    
+}
+.comment:hover{
+    color: rgb(29, 161, 242);
+}
+.comment > h5{
+    margin-left: 0.5em;
+    margin-top: 0.2em;
+}
+.retweet:hover{
+    color: rgb(1, 235, 32);
+}
+.likes{
+    display: flex;
+}
+.likes > h5{
+    margin-left: 0.5em;
+    margin-top: 0.2em;
+}
+.likes:hover{
+    color: rgb(255, 0, 43);
+}
+.share:hover{
+    color: rgb(29, 161, 242);
+}

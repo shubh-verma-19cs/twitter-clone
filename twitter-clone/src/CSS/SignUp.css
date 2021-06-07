@@ -1,0 +1,18 @@
+
+.Form{
+    display: flex;
+    flex-direction: column;
+    margin-top: 15%;
+    width: 20%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+
+.Form > input{
+    margin-bottom: 1.5em;
+    height: 2em;
+    font-size: medium;
+    padding-left: 0.5em;
+    padding-right: 0.5em;
+}

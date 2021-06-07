@@ -1,0 +1,21 @@
+.sidebarContainer{
+    flex: 0.2;
+    border: 0.5px solid lightgray;
+    display: flex;
+    flex-direction: column;
+}
+
+.homeIcon{
+    margin-bottom: 1.5em;
+    margin-left: 10%;
+    
+}
+
+.twitterIcon{
+    color: rgb(29, 161, 242);
+    size: 400px;
+}
+
+.SideBar{
+    margin-left: 5%;
+}

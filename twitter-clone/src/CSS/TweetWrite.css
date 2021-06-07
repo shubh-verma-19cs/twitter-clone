@@ -1,0 +1,51 @@
+.tweetWriteContainer{
+    display: flex;
+    flex-direction: column;
+    /* padding-left: 1.5em; */
+    border-bottom: 1px solid rgb(29, 161, 242);
+    padding-bottom: 0.5em;
+}
+
+.homeTitle{
+    border-bottom: 1px solid rgb(29, 161, 242);
+    padding: 0.75em;
+}
+
+.TweetWrite{
+    display: flex;
+    align-items: center;
+    margin-top: 0.5em;
+    padding-left: 0.75em;
+}
+
+.TweetWrite > input{
+    border: none;
+    /* border-bottom: 1px solid rgb(29, 161, 242); */
+    font-size: large;
+    margin-left: 0.5em;
+}
+
+.TweetWrite > input:focus{
+    outline: none;
+}
+
+.tweetFileUpload{
+    margin-top: 1em;
+    display: flex;
+    justify-content: space-between;
+    padding-left: 0.75em;
+    padding-right: 0.75em;
+}
+
+.tweetButton > button{
+    padding: 0.75em;
+    border-radius: 99px;
+    background-color: rgb(29, 161, 242);
+    color: white;
+    border: none;
+    font-weight: bold;
+}
+.tweetButton > button:hover{
+    background-color: rgb(20, 129, 197);
+    
+}
