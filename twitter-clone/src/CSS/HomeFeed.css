@@ -40,8 +40,9 @@
     display: flex;
     justify-content: space-around;
     margin-top: 2em;
-    margin-left: 8em;
-    margin-right: 10em;
+    margin-left: 5em;
+    margin-right: 8em;
+    color: rgb(93, 130, 131);
 }
 .comment{
     display: flex;
