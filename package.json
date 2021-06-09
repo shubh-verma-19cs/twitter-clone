@@ -18,7 +18,8 @@
     "formidable": "^1.2.2",
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^5.12.13",
-    "pusher": "^5.0.0"
+    "pusher": "^5.0.0",
+    "pusher-js": "^7.0.3"
   },
   "devDependencies": {
     "nodemon": "^2.0.7"
