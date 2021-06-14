@@ -90,4 +90,35 @@ router.get('/api/feeds', async(request, response)=>{
     });
 });
 
+router.post('/api/likes/:id',async(request, response)=>{
+    const tweetID = request.params.id;
+    const tweet = await tweetModel.findOne({_id:tweetID})
+    tweet.likes += 1;
+    const updateDocument = await tweetModel.findOneAndUpdate({_id:tweetID}, tweet,{
+        new:true,
+    })
+    return response.status(201).json({msg:"Liked tweet"});
+});
+
+router.post('/api/comments/:id',async(request, response)=>{
+    const tweetID = request.params.id;
+    const tweet = await tweetModel.findOne({_id:tweetID});
+
+    const form = new Formidable.IncomingForm();
+    form.parse(request, async(error, fields, files)=>{
+        const {comment} = fields;
+        tweet.comment = [...tweet.comments, comment];
+        const updateDocument = await tweetModel.findOneAndUpdate({_id:tweetID}, tweet,{
+        new:true,
+        });
+
+    })
+
+    
+    return response.status(201).json({msg:"Liked tweet"});
+});
+
+
+
+
 module.exports = router;

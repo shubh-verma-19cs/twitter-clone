@@ -8,6 +8,7 @@ import PublishIcon from '@material-ui/icons/Publish';
 import TweetWrite from './TweetWrite'
 import Pusher from 'pusher-js'
 import axios from 'axios'
+
 const HomeFeed = () => {
     const [tweets, setTweets] = useState([]);
     const [mounted, setMounted] = useState(true);
@@ -41,7 +42,29 @@ const HomeFeed = () => {
             setMounted(false)
         };
     }, [mounted]);
-console.log(tweets);
+
+    const likeFunction = ((ID)=>{
+        const url = `https://localhost:5000/api/likes/${ID}`;
+        axios.post(url).then((res)=>{
+            console.log(res);
+
+        }).catch((error)=>{
+            console.log(error);
+        })
+    });
+
+    const commentFunction = ((ID)=>{
+        const url = `https://localhost:5000/api/comments/${ID}`;
+        const comment = prompt("Enter a comment");
+        const data = new FormData();
+        data.append('comment',comment);
+        axios.post(url,data).then(res=>{
+            console.log(res);
+        }).catch(error=>{
+            console.log(error);
+        })
+    });
+
     return (
         <div className="homeFeedContainer">
             <TweetWrite />
@@ -65,14 +88,14 @@ console.log(tweets);
                                     }
                                     <div className="tweetIcons">
                                         <div className="comment">
-                                            <ChatBubbleIcon/>
+                                            <ChatBubbleIcon onClick={()=>commentFunction(tweet._id)}/>
                                             <h5>{tweet.comments.length}</h5>
                                         </div>
                                         <div className="retweet">
                                             <LoopIcon/>
                                         </div>
                                         <div className="likes">
-                                            <FavoriteIcon/>
+                                            <FavoriteIcon onClick={()=>likeFunction(tweet._id)}/>
                                             <h5>{tweet.likes}</h5>
                                         </div>
                                         <div className="share">
@@ -91,5 +114,6 @@ console.log(tweets);
         </div>
     )
 }
+
 
 export default HomeFeed
