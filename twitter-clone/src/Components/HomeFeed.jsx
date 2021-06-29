@@ -75,7 +75,7 @@ const HomeFeed = () => {
                         tweets.map(tweet=>{
                             return( <div className="feedContent">
                                 <div className="userProf">
-                                <Avatar alt="User" />
+                                <Avatar alt="User" src={tweet.profile} />
                                 </div>
                                 <div className="tweet">
                                     <div className="user">
@@ -84,7 +84,10 @@ const HomeFeed = () => {
                                     </div>
                                     <h4 className="text">{tweet.tweet}</h4>
                                     {
-                                        tweet.file ? <img src={tweet.file} alt=""/> : null
+                                        tweet.file ?<div> <img src={tweet.file} alt=""/>
+                                        {/* <video width='640' height= '480' controls>
+                                            <source src={tweet.file} type='video' /></video> */}
+                                            </div> : null
                                     }
                                     <div className="tweetIcons">
                                         <div className="comment">

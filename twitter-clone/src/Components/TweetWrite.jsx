@@ -20,7 +20,7 @@ const TweetWrite = () => {
         axios
             .post(url, data, {
                 headers:{
-                    "x-auth-token":token,
+                    "Authorization":token,
                 },
             })
             .then((response) =>{

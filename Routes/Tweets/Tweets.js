@@ -26,7 +26,6 @@ const db = mongoose.connection;
 // })
 db.once("open", ()=>{
     const twitterFeed = db.collection('tweetmodels');
-    // const tweetCollection = db.collection("tweetmodels");
     const changeStream = twitterFeed.watch();
     changeStream.on("change",(change)=>{
         pusher.trigger("twitterFeed", "insert",{
@@ -37,13 +36,13 @@ db.once("open", ()=>{
 
 
 router.post('/api/tweet-upload',async(request, response)=>{
-    // const token = request.header("x-auth-token");
-    // const verifiedToken = JWT.verify(token, process.env.jwt_passkey);
-    // const userID = verifiedToken.id;
+    const token = request.header("Authorization");
+    const verifiedToken = JWT.verify(token, process.env.jwt_passkey);
+    const userID = verifiedToken.id;
 
-    // const user = await userModel.findOne({_id:userID});
+    const user = await userModel.findOne({_id:userID});
 
-    // console.log(user);
+    console.log(user);
 
     const form = new Formidable.IncomingForm();
     form.parse(request,async(error, fields, files)=>{
@@ -53,10 +52,10 @@ router.post('/api/tweet-upload',async(request, response)=>{
         if(!file){
             
             const newTweet = new tweetModel({
-                // user:user.username,
+                user:user.username,
                 
                 tweet:tweet,
-                // profile:user.profPic,
+                profile:user.profPic,
 
             });
             const savedTweet = newTweet.save();
@@ -69,10 +68,10 @@ router.post('/api/tweet-upload',async(request, response)=>{
                 const fileURL=res.secure_url
 
                 const newTweet = new tweetModel({
-                    // user:user.username,
+                    user:user.username,
                     
                     tweet:tweet,
-                    // profile:userModel.profPic,
+                    profile:userModel.profPic,
                     file:fileURL
                 })
                 const savedTweet = await newTweet.save();
