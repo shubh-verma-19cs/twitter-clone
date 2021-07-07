@@ -25,5 +25,5 @@ app.use(require("./Routes/Tweets/Tweets"));
 
 const port = process.env.PORT || 5000;
 app.listen(port, ()=>{
-    console.log('Server started at PORT ${port}');
+    console.log('Server started at PORT');
 });

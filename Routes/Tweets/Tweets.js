@@ -36,7 +36,8 @@ db.once("open", ()=>{
 
 
 router.post('/api/tweet-upload',async(request, response)=>{
-    const token = request.header("Authorization");
+    // const token = request.header("Authorization");
+    const token = JWT.sign("Authorization", process.env.jwt_passkey);
     const verifiedToken = JWT.verify(token, process.env.jwt_passkey);
     const userID = verifiedToken.id;
 
@@ -52,10 +53,10 @@ router.post('/api/tweet-upload',async(request, response)=>{
         if(!file){
             
             const newTweet = new tweetModel({
-                user:user.username,
+                // user:user.username,
                 
                 tweet:tweet,
-                profile:user.profPic,
+                // profile:user.profPic,
 
             });
             const savedTweet = newTweet.save();

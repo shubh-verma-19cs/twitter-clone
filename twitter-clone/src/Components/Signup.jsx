@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import '../CSS/SignUp.css';
 import axios from 'axios' ;
-
+import {Link} from 'react-router-dom';
 
 export default class Signup extends Component {
     constructor(props){
@@ -54,6 +54,9 @@ export default class Signup extends Component {
                     <label>Profile Picture</label>
                     <input onChange={this.handleForm} type="file" id="image" />
                     <button onClick={this.signup}>SignUp</button>
+                    <Link to='/user-signin'>
+                        <button>LOGIN</button>
+                    </Link>
                 </form>
             </div>
         )
