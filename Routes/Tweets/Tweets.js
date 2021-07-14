@@ -69,10 +69,10 @@ router.post('/api/tweet-upload',async(request, response)=>{
                 const fileURL=res.secure_url
 
                 const newTweet = new tweetModel({
-                    user:user.username,
+                    //user:user.username,
                     
                     tweet:tweet,
-                    profile:userModel.profPic,
+                    //profile:userModel.profPic,
                     file:fileURL
                 })
                 const savedTweet = await newTweet.save();
