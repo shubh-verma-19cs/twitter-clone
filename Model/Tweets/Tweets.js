@@ -7,6 +7,7 @@ const tweetSchema = mongoose.Schema({
     // profile:{type:String, required:true},
     likes:{type:Number, required:false, default:0},
     comments:{type:Array, required:true, default:[]},
+    retweet:{type:Boolean, required:true, default:false},
 });
 
 const tweetModel = mongoose.model("tweetModel", tweetSchema);

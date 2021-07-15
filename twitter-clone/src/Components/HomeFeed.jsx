@@ -6,6 +6,7 @@ import ChatBubbleIcon from '@material-ui/icons/ChatBubble';
 import LoopIcon from '@material-ui/icons/Loop';
 import PublishIcon from '@material-ui/icons/Publish';
 import TweetWrite from './TweetWrite'
+import NameChange from './NameChange';
 import Pusher from 'pusher-js'
 import axios from 'axios'
 
@@ -65,8 +66,13 @@ const HomeFeed = () => {
         })
     });
 
+    const retweetFunction = ((ID)=>{
+        
+    });
+
     return (
         <div className="homeFeedContainer">
+            {/* <NameChange /> */}
             <TweetWrite />
 
             <div className="feed">{
@@ -81,6 +87,9 @@ const HomeFeed = () => {
                                     <div className="user">
                                         <h4>User </h4>
                                         <h4 className="userTag">@user</h4>
+                                        {
+                                            tweet.retweet?<div><h3>retweeted</h3></div>:null
+                                        }
                                     </div>
                                     <h4 className="text">{tweet.tweet}</h4>
                                     {
@@ -95,7 +104,7 @@ const HomeFeed = () => {
                                             <h5>{tweet.comments.length}</h5>
                                         </div>
                                         <div className="retweet">
-                                            <LoopIcon/>
+                                            <LoopIcon onClick={()=>retweetFunction(tweet._id)}/>
                                         </div>
                                         <div className="likes">
                                             <FavoriteIcon onClick={()=>likeFunction(tweet._id)}/>
