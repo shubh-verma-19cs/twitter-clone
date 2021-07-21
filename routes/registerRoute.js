@@ -3,6 +3,8 @@ const app = express();
 const router = express.Router();
 const bodyparser = require('body-parser');
 const UserModel = require('../models/UserModel');
+const bcrypt = require('bcrypt');
+// const User = require('../models/UserModel');
 
 app.set("view engine", "pug");
 app.set("views", "template");
@@ -11,30 +13,54 @@ router.get("/", (req, res, next) => {
     res.status(200).render("Register");
 })
 
-router.post("/", (req, res, next) => {
-    var fname = req.body.firstName.trim();
-    var lname = req.body.lastName.trim();
-    var uname = req.body.userName.trim();
+router.post("/", async (req, res, next) => {
+    var firstName = req.body.firstName.trim();
+    var lastName = req.body.lastName.trim();
+    var userName = req.body.userName.trim();
     var email = req.body.email.trim();
-    var password = req.body.loginPassword;
+    var password = req.body.password;
 
     var payload = req.body;
-    if(fname && lname && uname && email && password){
-        UserModel.findOne({
+    if(firstName && lastName && userName && email && password){
+        var user = await UserModel.findOne({
             $or: [
-                {userName: uname},
+                {userName: userName},
                 {email: email}
             ]
-        }).then((user)=>{
-            console.log(user);
         })
-        console.log("AAA");
+        .catch((error)=>{
+            console.log(error);
+            payload.errorMessage = "Something went wrong";
+            res.status(200).render("Register", payload);
+        });
 
+        if(user == null){
+            var data = req.body;
+
+            data.password = await bcrypt.hash(password, 10);
+
+            UserModel.create(data).then((user)=>{
+                req.session.user = user;
+                return res.redirect("/");
+                
+            })
+            
+        }
+        else{
+            if(email == user.email){
+                payload.errorMessage = "Email is already in use.";
+            }
+            else{
+                payload.errorMessage = "Username is already in use";
+            }
+            res.status(200).render("Register", payload);
+            
+        }
+        
     }else{
         payload.errorMessage = "Please fill all the fields";
-        res.status(200).render("register", payload);
+        res.status(200).render("Register", payload);
     }
-    res.status(200).render("Register");
 })
 
 
